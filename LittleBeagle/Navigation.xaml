@@ -1,0 +1,10 @@
+﻿<NavigationWindow x:Class="Owl.Navigation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Navigation" Height="350" Width="300" Source="PageSearch.xaml" 
+    StateChanged="Window_StateChanged" 
+    IsVisibleChanged="Window_IsVisibleChanged" 
+    KeyDown="Window_KeyDown"
+    Closed="Window_Closed"
+    Icon="media/Owl.ico">
+</NavigationWindow>

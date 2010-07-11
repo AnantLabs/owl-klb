@@ -1,0 +1,98 @@
+﻿
+<Page
+	x:Class="Owl.PageSearch"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:UIControls;assembly=UIControls"
+	xmlns:settings="clr-namespace:Owl.Properties"
+	xmlns:src="clr-namespace:Owl"
+    ShowsNavigationUI="True"
+	Title="Owl"    
+	WindowTitle="Owl: Search" IsVisibleChanged="Page_IsVisibleChanged"
+    FocusManager.FocusedElement="{Binding ElementName=SearchField}"
+    >
+    <Page.Resources>
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <!--ResourceDictionary Source="Media\Theme2.xaml"/-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <!--ResourceDictionary Source="Media/GridBlue.xaml"-->
+    </Page.Resources>
+	<!--Page.Background>
+        
+    </Page.Background-->
+    <!--Page.CommandBindings>
+        <CommandBinding Command="{x:Static src:App.MyExploreCommand}" />
+    </Page.CommandBindings-->
+
+    <Grid SnapsToDevicePixels="True">
+
+        <Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition/>
+            <RowDefinition Height="16"/>
+        </Grid.RowDefinitions>
+		<Grid Grid.Row="0">
+            <Grid.Background>
+                <ImageBrush ImageSource="Media/brushed/header.png" />
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1.0*"/>
+				<ColumnDefinition Width="64"/>
+			</Grid.ColumnDefinitions>
+			<!--Border
+				Height="32"
+				Grid.Column="0"
+				VerticalAlignment="Center"
+				BorderThickness="2"
+				CornerRadius="8" Background="White" Margin="8,0,0,0">
+				<Border.BorderBrush>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FF493861" Offset="0"/>
+						<GradientStop Color="#FFD7D2DC" Offset="1"/>
+					</LinearGradientBrush>
+				</Border.BorderBrush-->
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<!--ColumnDefinition Width="24"/-->
+					</Grid.ColumnDefinitions>
+					<l:SearchTextBox                         
+						x:Name="SearchField"
+                        SearchEventTimeDelay="00:00:00"
+                        Margin="8,0,0,0"
+						BorderThickness="1"
+						FontSize="14.667" TextWrapping="Wrap" Height="24" Foreground="Black" Search="SearchField_TextInput"/>
+					<!--Button
+						x:Name="Search" HorizontalAlignment="Right" Width="24" Grid.Column="1" Height="24" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" IsDefault="True" Click="Search_Click">
+						<Image Width="16" Height="16" Source="magnifier.png" Stretch="Fill" RenderTransformOrigin="2.531,0.062"/>
+					</Button-->
+				</Grid>
+			<!--/Border-->
+			<TextBlock VerticalAlignment="Center" Grid.Column="1" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="Red">
+				<Hyperlink NavigateUri="PageAdmin.xaml">Settings</Hyperlink>
+			</TextBlock>
+		</Grid>
+
+		<ListBox x:Name="ResultList" Grid.Row="1" ItemsSource="{Binding Source={x:Static Application.Current}, Path=ResultItems}" HorizontalAlignment="Stretch">
+            <!--ListBox.GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource groupingHeaderTemplate}" />
+            </ListBox.GroupStyle-->
+            <ListBox.Background>
+                <LinearGradientBrush  StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="DarkSlateGray" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.02"/>
+                </LinearGradientBrush>
+            </ListBox.Background>
+        </ListBox>
+        <!--Image x:Name="DaPicture" Grid.Column="0" Source="{Binding IsAsync=True, Path=Icon}" /-->
+        <Border Grid.Row="2">
+            <Border.Background>
+                <ImageBrush ImageSource="Media/brushed/footer.png" />
+            </Border.Background>
+            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=Infos.SearchStatus}" Foreground="Black" Background="#66FFFFFF"/>
+        </Border>
+    </Grid>
+</Page>
